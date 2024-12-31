@@ -15,18 +15,22 @@ typedef struct {
     const void *cmd;
 } Sp;
 
-const char *spcmd1[] = {"st", "-n", "spterm", "-g", "120x34", NULL };
-const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", "-e", "ranger", NULL };
-const char *spcmd3[] = {"keepassxc", NULL };
+/* Set for a 2560x1440 resolution, set to your desired dimensions */
+const char *spcmd1[] = {"keepassxc", NULL };
+const char *spcmd2[] = {"alacritty", "--class", "spnvim", "-o", "window.dimensions.columns=160", "window.dimensions.lines=44", "-e", "nvim", NULL };
+const char *spcmd3[] = {"alacritty", "--class", "spyazi", "-o", "window.dimensions.columns=160", "window.dimensions.lines=44", "-e", "yazi", NULL };
+const char *spcmd4[] = {"alacritty", "--class", "spalacritty", "-o", "window.dimensions.columns=160", "window.dimensions.lines=44", NULL };
+
 static Sp scratchpads[] = {
     /* name          cmd  */
-    {"spterm",      spcmd1},
-    {"spranger",    spcmd2},
-    {"keepassxc",   spcmd3},
+    {"keepassxc",   spcmd1},
+    {"spnvim",      spcmd2},
+    {"spyazi",      spcmd3},
+    {"spalacritty", spcmd4},
 };
 
 /* tagging */
-static const char *tags[] = { "I", "II", "III", "IV", "V", "6", "7", "8", "9" };
+static const char *tags[] = { "I", "II", "III", "IV", "V", "VI", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -36,9 +40,10 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
-  { NULL,       "spterm",   NULL,       SPTAG(0),     1,           -1 },
-  { NULL,       "spfm",     NULL,       SPTAG(1),     1,           -1 },
-  { NULL,       "keepassxc",NULL,       SPTAG(2),     0,           -1 },
+  { NULL,       "keepassxc",NULL,       SPTAG(0),     0,           -1 },
+  { NULL,       "spnvim",     NULL,       SPTAG(1),     1,           -1 },
+  { NULL,       "spyazi",     NULL,       SPTAG(2),     1,           -1 },
+  { NULL,       "spalacritty",NULL,       SPTAG(3),     1,           -1 },
 };
 
 /* layout(s) */
@@ -99,9 +104,10 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY,            			XK_y,  	   togglescratch,  {.ui = 0 } },
-	{ MODKEY,            			XK_u,	   togglescratch,  {.ui = 1 } },
-	{ MODKEY,            			XK_x,	   togglescratch,  {.ui = 2 } },
+  { MODKEY,                       XK_x,      togglescratch,  {.ui = 0 } }, // for keepassxc
+  { MODKEY,                       XK_n,      togglescratch,  {.ui = 1 } }, // for nvim
+  { MODKEY,                       XK_y,      togglescratch,  {.ui = 2 } }, // for yazi
+  { MODKEY,                       XK_a,      togglescratch,  {.ui = 3 } }, // for alacritty
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)

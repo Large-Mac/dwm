@@ -1,8 +1,13 @@
 This is my simple version of DWM.
 
-As of writing, this build is completly patchless, although I may incorporate the slsstatus patch in order for dwmblocks to have clickable functionality.
+Patches Applied:
 
-This build uses pywal, so that is the sole dependancy for the build. 
+Slstatus (for clickable dwmblocks)
+scratchpads (multiple scratchpads)
 
-I use devour for the rare times that I need to use the swallow functionality, and I may wirte my own script using xdo.
+This build uses pywal, so that is the sole dependency for the build. 
+
+I use devour for the rare times that I need to use the swallow functionality, and I may write my own script using xdo.
+
+This also requires permissions to be set to have dwmblocks and dwm compile during startup.
 
