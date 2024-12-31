@@ -20,6 +20,7 @@ const char *spcmd1[] = {"keepassxc", NULL };
 const char *spcmd2[] = {"alacritty", "--class", "spnvim", "-o", "window.dimensions.columns=160", "window.dimensions.lines=44", "-e", "nvim", NULL };
 const char *spcmd3[] = {"alacritty", "--class", "spyazi", "-o", "window.dimensions.columns=160", "window.dimensions.lines=44", "-e", "yazi", NULL };
 const char *spcmd4[] = {"alacritty", "--class", "spalacritty", "-o", "window.dimensions.columns=160", "window.dimensions.lines=44", NULL };
+const char *spcmd5[] = {"alacritty", "--class", "spncmpcpp", "-o", "window.dimensions.columns=160", "window.dimensions.lines=44", "-e", "ncmpcpp", NULL };
 
 static Sp scratchpads[] = {
     /* name          cmd  */
@@ -27,6 +28,7 @@ static Sp scratchpads[] = {
     {"spnvim",      spcmd2},
     {"spyazi",      spcmd3},
     {"spalacritty", spcmd4},
+    {"spncmpcpp",   spcmd5},
 };
 
 /* tagging */
@@ -44,6 +46,7 @@ static const Rule rules[] = {
   { NULL,       "spnvim",     NULL,       SPTAG(1),     1,           -1 },
   { NULL,       "spyazi",     NULL,       SPTAG(2),     1,           -1 },
   { NULL,       "spalacritty",NULL,       SPTAG(3),     1,           -1 },
+  { NULL,       "spncmpcpp",  NULL,       SPTAG(4),     1,           -1 },
 };
 
 /* layout(s) */
@@ -108,6 +111,7 @@ static const Key keys[] = {
   { MODKEY,                       XK_n,      togglescratch,  {.ui = 1 } }, // for nvim
   { MODKEY,                       XK_y,      togglescratch,  {.ui = 2 } }, // for yazi
   { MODKEY,                       XK_a,      togglescratch,  {.ui = 3 } }, // for alacritty
+  { MODKEY,                       XK_m,      togglescratch,  {.ui = 4 } }, // for ncmpcpp
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
