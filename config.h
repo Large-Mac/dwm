@@ -227,7 +227,7 @@ static const char *dmenucmd[] = {
 	"-sf", selfgcolor,
 	NULL
 };
-static const char *termcmd[]  = { "kitty", NULL };
+static const char *termcmd[]  = { "st", NULL };
 
 /* commands spawned when clicking statusbar, the mouse button pressed is exported as BUTTON */
 static const StatusCmd statuscmds[] = {
@@ -259,6 +259,7 @@ static const char *statuscmd[] = { "/bin/sh", "-c", NULL, NULL };
 */
 ResourcePref resources[] = {
 	/* Resource name            Type       Address                */
+	// This section is commented out since it requires a very bloated .xresources, defining all these variables
 	{ "normfgcolor",            STRING,    &normfgcolor },
 	{ "normbgcolor",            STRING,    &normbgcolor },
 	{ "normbordercolor",        STRING,    &normbordercolor },
@@ -293,6 +294,28 @@ ResourcePref resources[] = {
 	{ "urgfloatcolor",          STRING,    &urgfloatcolor },
 };
 
+//ResourcePref resources[] = {
+	/* Resource name       Type       Address                */
+	/*{ "color8",            STRING,    &normbordercolor },     // gray border
+	{ "color2",            STRING,    &selbordercolor },      // green selected border
+	{ "color0",            STRING,    &normbgcolor },         // dark background
+	{ "color7",            STRING,    &normfgcolor },         // light text
+	{ "color0",            STRING,    &selfgcolor },          // dark selected text
+	{ "color2",            STRING,    &selbgcolor },          // green selected background
+	{ "borderpx",          INTEGER,   &borderpx },
+	{ "snap",              INTEGER,   &snap },
+	{ "showbar",           INTEGER,   &showbar },
+	{ "topbar",            INTEGER,   &topbar },
+	{ "nmaster",           INTEGER,   &nmaster },
+	{ "resizehints",       INTEGER,   &resizehints },
+	{ "mfact",             FLOAT,     &mfact },
+	{ "gappih",            INTEGER,   &gappih },
+	{ "gappiv",            INTEGER,   &gappiv },
+	{ "gappoh",            INTEGER,   &gappoh },
+	{ "gappov",            INTEGER,   &gappov },
+	{ "swallowfloating",   INTEGER,   &swallowfloating },
+};
+*/
 static const Key keys[] = {
 	/* modifier                     key            function                argument */
 	{ MODKEY,                       XK_Escape,     setkeymode,             {.ui = COMMANDMODE} },
