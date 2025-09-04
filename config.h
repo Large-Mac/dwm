@@ -24,62 +24,41 @@ static int tiledindicatortype            = INDICATOR_NONE;
 static int floatindicatortype            = INDICATOR_TOP_LEFT_SQUARE;
 static int fakefsindicatortype           = INDICATOR_PLUS;
 static int floatfakefsindicatortype      = INDICATOR_PLUS_AND_LARGER_SQUARE;
-static const char *fonts[]               = { "monospace:size=10" };
-static const char dmenufont[]            = "monospace:size=10";
+static const char *fonts[]               = { "monospace:size=13" };
+static const char dmenufont[]            = "monospace:size=13";
 
 static char c000000[]                    = "#000000"; // placeholder value
 
-static char normfgcolor[]                = "#bbbbbb";
-static char normbgcolor[]                = "#222222";
-static char normbordercolor[]            = "#444444";
-static char normfloatcolor[]             = "#db8fd9";
-
-static char selfgcolor[]                 = "#eeeeee";
-static char selbgcolor[]                 = "#005577";
-static char selbordercolor[]             = "#005577";
-static char selfloatcolor[]              = "#005577";
-
-static char titlenormfgcolor[]           = "#bbbbbb";
-static char titlenormbgcolor[]           = "#222222";
-static char titlenormbordercolor[]       = "#444444";
-static char titlenormfloatcolor[]        = "#db8fd9";
-
-static char titleselfgcolor[]            = "#eeeeee";
-static char titleselbgcolor[]            = "#005577";
-static char titleselbordercolor[]        = "#005577";
-static char titleselfloatcolor[]         = "#005577";
-
-static char tagsnormfgcolor[]            = "#bbbbbb";
-static char tagsnormbgcolor[]            = "#222222";
-static char tagsnormbordercolor[]        = "#444444";
-static char tagsnormfloatcolor[]         = "#db8fd9";
-
-static char tagsselfgcolor[]             = "#eeeeee";
-static char tagsselbgcolor[]             = "#005577";
-static char tagsselbordercolor[]         = "#005577";
-static char tagsselfloatcolor[]          = "#005577";
-
-static char hidnormfgcolor[]             = "#005577";
-static char hidselfgcolor[]              = "#227799";
-static char hidnormbgcolor[]             = "#222222";
-static char hidselbgcolor[]              = "#222222";
-
-static char urgfgcolor[]                 = "#bbbbbb";
-static char urgbgcolor[]                 = "#222222";
-static char urgbordercolor[]             = "#ff0000";
-static char urgfloatcolor[]              = "#db8fd9";
+static char foreground[]                 = "#d3c6aa";
+static char background[]                 = "#232a2e";
+static char color0[]                     = "#7a8478";
+static char color1[]                     = "#e67e80";
+static char color2[]                     = "#a7c080";
+static char color3[]                     = "#dbbc7f";
+static char color4[]                     = "#7fbbb3";
+static char color5[]                     = "#d699b6";
+static char color6[]                     = "#83c092";
+static char color7[]                     = "#d3c6aa";
+static char color8[]                     = "#7a8478";
+static char color9[]                     = "#e67e80";
+static char color10[]                    = "#a7c080";
+static char color11[]                    = "#dbbc7f";
+static char color12[]                    = "#7fbbb3";
+static char color13[]                    = "#d699b6";
+static char color14[]                    = "#83c092";
+static char color15[]                    = "#d3c6aa";
 
 static char *colors[][ColCount] = {
-	/*                       fg                bg                border                float */
-	[SchemeNorm]         = { normfgcolor,      normbgcolor,      normbordercolor,      normfloatcolor },
-	[SchemeSel]          = { selfgcolor,       selbgcolor,       selbordercolor,       selfloatcolor },
-	[SchemeTitleNorm]    = { titlenormfgcolor, titlenormbgcolor, titlenormbordercolor, titlenormfloatcolor },
-	[SchemeTitleSel]     = { titleselfgcolor,  titleselbgcolor,  titleselbordercolor,  titleselfloatcolor },
-	[SchemeTagsNorm]     = { tagsnormfgcolor,  tagsnormbgcolor,  tagsnormbordercolor,  tagsnormfloatcolor },
-	[SchemeTagsSel]      = { tagsselfgcolor,   tagsselbgcolor,   tagsselbordercolor,   tagsselfloatcolor },
-	[SchemeHidNorm]      = { hidnormfgcolor,   hidnormbgcolor,   c000000,              c000000 },
-	[SchemeHidSel]       = { hidselfgcolor,    hidselbgcolor,    c000000,              c000000 },
-	[SchemeUrg]          = { urgfgcolor,       urgbgcolor,       urgbordercolor,       urgfloatcolor },
+	/*                       fg           bg           border       float */
+	[SchemeNorm]         = { foreground,  background,  color0,      color5 },
+	[SchemeSel]          = { background,  color2,      color2,      color2 },
+	[SchemeTitleNorm]    = { foreground,  background,  color0,      color5 },
+	[SchemeTitleSel]     = { background,  color2,      color2,      color2 },
+	[SchemeTagsNorm]     = { foreground,  background,  color0,      color5 },
+	[SchemeTagsSel]      = { background,  color2,      color2,      color2 },
+	[SchemeHidNorm]      = { color2,      background,  c000000,     c000000 },
+	[SchemeHidSel]       = { color4,      background,  c000000,     c000000 },
+	[SchemeUrg]          = { foreground,  background,  color1,      color5 },
 };
 
 /* Tags
@@ -221,10 +200,10 @@ static const char *dmenucmd[] = {
 	"dmenu_run",
 	"-m", dmenumon,
 	"-fn", dmenufont,
-	"-nb", normbgcolor,
-	"-nf", normfgcolor,
-	"-sb", selbgcolor,
-	"-sf", selfgcolor,
+	"-nb", background,
+	"-nf", foreground,
+	"-sb", color2,
+	"-sf", background,
 	NULL
 };
 static const char *termcmd[]  = { "st", NULL };
@@ -258,50 +237,25 @@ static const char *statuscmd[] = { "/bin/sh", "-c", NULL, NULL };
 * using the xrdb function some changes may only take effect following a restart.
 */
 ResourcePref resources[] = {
-	/* Resource name            Type       Address                */
-	// This section is commented out since it requires a very bloated .xresources, defining all these variables
-	{ "normfgcolor",            STRING,    &normfgcolor },
-	{ "normbgcolor",            STRING,    &normbgcolor },
-	{ "normbordercolor",        STRING,    &normbordercolor },
-	{ "normfloatcolor",         STRING,    &normfloatcolor },
-	{ "selfgcolor",             STRING,    &selfgcolor },
-	{ "selbgcolor",             STRING,    &selbgcolor },
-	{ "selbordercolor",         STRING,    &selbordercolor },
-	{ "selfloatcolor",          STRING,    &selfloatcolor },
-	{ "titlenormfgcolor",       STRING,    &titlenormfgcolor },
-	{ "titlenormbgcolor",       STRING,    &titlenormbgcolor },
-	{ "titlenormbordercolor",   STRING,    &titlenormbordercolor },
-	{ "titlenormfloatcolor",    STRING,    &titlenormfloatcolor },
-	{ "titleselfgcolor",        STRING,    &titleselfgcolor },
-	{ "titleselbgcolor",        STRING,    &titleselbgcolor },
-	{ "titleselbordercolor",    STRING,    &titleselbordercolor },
-	{ "titleselfloatcolor",     STRING,    &titleselfloatcolor },
-	{ "tagsnormfgcolor",        STRING,    &tagsnormfgcolor },
-	{ "tagsnormbgcolor",        STRING,    &tagsnormbgcolor },
-	{ "tagsnormbordercolor",    STRING,    &tagsnormbordercolor },
-	{ "tagsnormfloatcolor",     STRING,    &tagsnormfloatcolor },
-	{ "tagsselfgcolor",         STRING,    &tagsselfgcolor },
-	{ "tagsselbgcolor",         STRING,    &tagsselbgcolor },
-	{ "tagsselbordercolor",     STRING,    &tagsselbordercolor },
-	{ "tagsselfloatcolor",      STRING,    &tagsselfloatcolor },
-	{ "hidnormfgcolor",         STRING,    &hidnormfgcolor },
-	{ "hidnormbgcolor",         STRING,    &hidnormbgcolor },
-	{ "hidselfgcolor",          STRING,    &hidselfgcolor },
-	{ "hidselbgcolor",          STRING,    &hidselbgcolor },
-	{ "urgfgcolor",             STRING,    &urgfgcolor },
-	{ "urgbgcolor",             STRING,    &urgbgcolor },
-	{ "urgbordercolor",         STRING,    &urgbordercolor },
-	{ "urgfloatcolor",          STRING,    &urgfloatcolor },
-};
-
-//ResourcePref resources[] = {
 	/* Resource name       Type       Address                */
-	/*{ "color8",            STRING,    &normbordercolor },     // gray border
-	{ "color2",            STRING,    &selbordercolor },      // green selected border
-	{ "color0",            STRING,    &normbgcolor },         // dark background
-	{ "color7",            STRING,    &normfgcolor },         // light text
-	{ "color0",            STRING,    &selfgcolor },          // dark selected text
-	{ "color2",            STRING,    &selbgcolor },          // green selected background
+	{ "foreground",        STRING,    &foreground },
+	{ "background",        STRING,    &background },
+	{ "color0",            STRING,    &color0 },
+	{ "color1",            STRING,    &color1 },
+	{ "color2",            STRING,    &color2 },
+	{ "color3",            STRING,    &color3 },
+	{ "color4",            STRING,    &color4 },
+	{ "color5",            STRING,    &color5 },
+	{ "color6",            STRING,    &color6 },
+	{ "color7",            STRING,    &color7 },
+	{ "color8",            STRING,    &color8 },
+	{ "color9",            STRING,    &color9 },
+	{ "color10",           STRING,    &color10 },
+	{ "color11",           STRING,    &color11 },
+	{ "color12",           STRING,    &color12 },
+	{ "color13",           STRING,    &color13 },
+	{ "color14",           STRING,    &color14 },
+	{ "color15",           STRING,    &color15 },
 	{ "borderpx",          INTEGER,   &borderpx },
 	{ "snap",              INTEGER,   &snap },
 	{ "showbar",           INTEGER,   &showbar },
@@ -315,7 +269,6 @@ ResourcePref resources[] = {
 	{ "gappov",            INTEGER,   &gappov },
 	{ "swallowfloating",   INTEGER,   &swallowfloating },
 };
-*/
 static const Key keys[] = {
 	/* modifier                     key            function                argument */
 	{ MODKEY,                       XK_Escape,     setkeymode,             {.ui = COMMANDMODE} },

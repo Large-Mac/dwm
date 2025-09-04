@@ -5,9 +5,9 @@
 #define CMD(...)   { .v = (const char*[]){ __VA_ARGS__, NULL } }
 
 /* appearance */
-static const unsigned int borderpx       = 1;   /* border pixel of windows */
+static const unsigned int borderpx       = 2;   /* border pixel of windows */
 static const unsigned int snap           = 32;  /* snap pixel */
-static const int swallowfloating         = 0;   /* 1 means swallow floating windows by default */
+static const int swallowfloating         = 1;   /* 1 means swallow floating windows by default */
 static const unsigned int gappih         = 20;  /* horiz inner gap between windows */
 static const unsigned int gappiv         = 10;  /* vert inner gap between windows */
 static const unsigned int gappoh         = 10;  /* horiz outer gap between windows and screen edge */
@@ -199,7 +199,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod1Mask
+#define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -259,6 +259,7 @@ static const char *statuscmd[] = { "/bin/sh", "-c", NULL, NULL };
 */
 ResourcePref resources[] = {
 	/* Resource name            Type       Address                */
+	// This section is commented out since it requires a very bloated .xresources, defining all these variables
 	{ "normfgcolor",            STRING,    &normfgcolor },
 	{ "normbgcolor",            STRING,    &normbgcolor },
 	{ "normbordercolor",        STRING,    &normbordercolor },
@@ -293,6 +294,28 @@ ResourcePref resources[] = {
 	{ "urgfloatcolor",          STRING,    &urgfloatcolor },
 };
 
+//ResourcePref resources[] = {
+	/* Resource name       Type       Address                */
+	/*{ "color8",            STRING,    &normbordercolor },     // gray border
+	{ "color2",            STRING,    &selbordercolor },      // green selected border
+	{ "color0",            STRING,    &normbgcolor },         // dark background
+	{ "color7",            STRING,    &normfgcolor },         // light text
+	{ "color0",            STRING,    &selfgcolor },          // dark selected text
+	{ "color2",            STRING,    &selbgcolor },          // green selected background
+	{ "borderpx",          INTEGER,   &borderpx },
+	{ "snap",              INTEGER,   &snap },
+	{ "showbar",           INTEGER,   &showbar },
+	{ "topbar",            INTEGER,   &topbar },
+	{ "nmaster",           INTEGER,   &nmaster },
+	{ "resizehints",       INTEGER,   &resizehints },
+	{ "mfact",             FLOAT,     &mfact },
+	{ "gappih",            INTEGER,   &gappih },
+	{ "gappiv",            INTEGER,   &gappiv },
+	{ "gappoh",            INTEGER,   &gappoh },
+	{ "gappov",            INTEGER,   &gappov },
+	{ "swallowfloating",   INTEGER,   &swallowfloating },
+};
+*/
 static const Key keys[] = {
 	/* modifier                     key            function                argument */
 	{ MODKEY,                       XK_Escape,     setkeymode,             {.ui = COMMANDMODE} },
